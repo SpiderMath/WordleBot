@@ -1,0 +1,31 @@
+{
+  "name": "wordlebot",
+  "version": "1.0.0",
+  "description": "A discord bot to play wordle",
+  "main": "./Source/Bot.js",
+  "scripts": {
+    "test": "npx nodemon ./Source/Bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpiderMath/WordleBot.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "wordle"
+  ],
+  "author": "Defective Detective",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SpiderMath/WordleBot/issues"
+  },
+  "homepage": "https://github.com/SpiderMath/WordleBot#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
