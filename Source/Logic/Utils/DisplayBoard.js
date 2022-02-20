@@ -1,22 +1,29 @@
+const yellows = require('../../../Assets/YellowEmojis.json');
+const blacks = require('../../../Assets/BlackEmojis.json');
+const greens = require('../../../Assets/GreenEmojis.json');
+
 /**
  * @param {string} char
  */
 function blackAlphabets(char) {
-	return "⬛";
+	// return "⬛";
+	return blacks[char.toUpperCase()];
 }
 
 /**
  * @param {string} char
  */
 function greenAlphabets(char) {
-	return "🟩";
+	return greens[char.toUpperCase()];
+	// return "🟩";
 }
 
 /**
  * @param {string} char
  */
 function yellowAlphabets(char) {
-	return "🟨";
+	// return "🟨";
+	return yellows[char.toUpperCase()];
 }
 
 /**
