@@ -25,7 +25,9 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "canvas": "^2.9.0",
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "gifencoder": "^2.0.1"
   }
 }
