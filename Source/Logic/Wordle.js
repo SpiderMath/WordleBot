@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const words = require('../../Assets/Words.json');
 const isAlphabetical = require('./Utils/isAlphabetical');
-const DisplayBoard = require('./Utils/displayBoard');
+const DisplayBoard = require('./Utils/DisplayBoard');
 
 module.exports = class Wordle {
 	constructor(interaction) {

@@ -9,8 +9,9 @@ module.exports = class DisplayBoard {
 		 */
 		this.answer = answer;
 		this.lineCount = 0;
-		this.unit = 128;
-		this.canvas = createCanvas(256 * 6, 256 * 5);
+
+		this.unit = 32;
+		this.canvas = createCanvas(this.unit * 5, this.unit * 6);
 
 		// Initialising the blank board
 		for (let i = 0; i <= 5; i++) for (let j = 0; j <= 4; j++) this.fillCell(i, j);
@@ -32,19 +33,19 @@ module.exports = class DisplayBoard {
 
 		if (char) {
 			ctx.fillStyle = this.getFill(char, letterIndex);
-			this.roundRect(ctx, letterIndex * 256, lineNumber * 256, 256, 256, 64, true);
+			this.roundRect(ctx, letterIndex * this.unit, lineNumber * this.unit, this.unit, this.unit, this.unit / 4, true);
 
 			char = char.toUpperCase();
 
 			ctx.font = `${this.unit}px Arial`;
 			ctx.fillStyle = '#ffffff';
 			ctx.textAlign = 'center';
-			ctx.fillText(char, 128 + (256 * letterIndex), (256 * (5 / 6)) + (lineNumber * 256));
+			ctx.fillText(char, (this.unit / 2) + (this.unit * letterIndex), (this.unit * (5 / 6)) + (lineNumber * this.unit));
 		}
 		else {
 			ctx.fillStyle = 'white';
 			ctx.strokeStyle = 'black';
-			this.roundRect(ctx, letterIndex * 256, lineNumber * 256, 256, 256, 64, true, true);
+			this.roundRect(ctx, letterIndex * this.unit, lineNumber * this.unit, this.unit, this.unit, this.unit / 4, true, true);
 		}
 	}
 
