@@ -45,6 +45,7 @@ module.exports = class Wordle {
 
 		await this.interaction.reply({
 			embeds: [this.getDisplayEmbed()],
+			files: [displayBoard(this.board, this.answer)],
 		});
 
 		while(this.count !== 6) {
@@ -64,6 +65,7 @@ module.exports = class Wordle {
 
 			this.interaction.editReply({
 				embeds: [this.getDisplayEmbed()],
+				files: [displayBoard(this.board, this.answer)],
 			});
 		}
 	}
@@ -101,10 +103,17 @@ module.exports = class Wordle {
 
 	getDisplayEmbed() {
 		return new MessageEmbed()
-			.setDescription(displayBoard(this.board, this.answer))
+			.setImage('attachment://board.png')
 			.setFooter({
 				text: this.interaction.user.tag,
 				iconURL: this.interaction.user.displayAvatarURL({ dynamic: true }),
-			});
+			})
+			.setColor(
+				this.count === 6
+					? this.win
+						? 'GREEN'
+						: 'RED'
+					: 'YELLOW'
+			);
 	}
 }
