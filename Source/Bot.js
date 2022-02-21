@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, Intents } = require("discord.js");
+const { Client, Intents } = require('discord.js');
 const Wordle = require('./Logic/Wordle');
 
 // Declaring stuff
@@ -22,7 +22,7 @@ client.on('ready', () => {
 
 
 client.on('interactionCreate', async (interaction) => {
-	if(interaction.isCommand()) await (new Wordle(interaction)).start();
+	if (interaction.isCommand()) await (new Wordle(interaction)).start();
 });
 
 

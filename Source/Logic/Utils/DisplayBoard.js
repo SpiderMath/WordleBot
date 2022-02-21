@@ -1,23 +1,23 @@
-const { createCanvas } = require("canvas");
-const { MessageAttachment } = require("discord.js");
+const { createCanvas } = require('canvas');
+const { MessageAttachment } = require('discord.js');
 
 const black = '#A4AEC4';
 const yellow = '#F3C237';
 const green = '#79B851';
 
 /**
- * @param {string[]} board 
- * @param {string} answer 
+ * @param {string[]} board
+ * @param {string} answer
  */
 function display(board, answer) {
 	const canvas = createCanvas(256 * 5, 256 * 6);
 	const ctx = canvas.getContext('2d');
 
-	for(let line = 0; line <= 6	; line++) {
+	for (let line = 0; line <= 6	; line++) {
 		const currentLine = board[line] || [null, null, null, null, null];
 
 		currentLine.map((char, i) => {
-			if(char) {
+			if (char) {
 				ctx.fillStyle = getFill(char, answer, i);
 				roundRect(ctx, i * 256, line * 256, 256, 256, 64, true);
 				ctx.font = '256px Arial';
@@ -46,10 +46,11 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
 		radius = 5;
 	}
 	if (typeof radius === 'number') {
-		radius = {tl: radius, tr: radius, br: radius, bl: radius};
-	} else {
-		var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
-		for (var side in defaultRadius) {
+		radius = { tl: radius, tr: radius, br: radius, bl: radius };
+	}
+	else {
+		const defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
+		for (const side in defaultRadius) {
 			radius[side] = radius[side] || defaultRadius[side];
 		}
 	}
@@ -77,13 +78,13 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
 
 
 /**
- * @param {string} char 
- * @param {string} answer 
- * @param {number} index 
+ * @param {string} char
+ * @param {string} answer
+ * @param {number} index
  */
 function getFill(char, answer, index) {
-	if(!answer.includes(char)) return black;
-	else if(answer[index] === char) return green;
+	if (!answer.includes(char)) return black;
+	else if (answer[index] === char) return green;
 	else return yellow;
 }
 

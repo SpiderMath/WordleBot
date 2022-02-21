@@ -25,7 +25,7 @@ module.exports = class Wordle {
 		/**
 		 * @description The word the player is trying to guess
 		 */
-		this.answer = words[ Math.floor( Math.random() * words.length ) ];
+		this.answer = words[ Math.floor(Math.random() * words.length) ];
 
 		/**
 		 * @description A counter to use
@@ -48,15 +48,15 @@ module.exports = class Wordle {
 			files: [displayBoard(this.board, this.answer)],
 		});
 
-		while(this.count !== 6) {
+		while (this.count !== 6) {
 			const guessedWord = await this.awaitMessage();
 			console.log(guessedWord);
 
-			if(typeof guessedWord === 'boolean') break;
+			if (typeof guessedWord === 'boolean') break;
 
 			this.board[this.count] = guessedWord.split('');
 
-			if(guessedWord === this.answer) {
+			if (guessedWord === this.answer) {
 				this.count = 5;
 				this.win = true;
 			}
@@ -76,26 +76,27 @@ module.exports = class Wordle {
 		const messagesCollected = await this.interaction.channel
 			.awaitMessages({
 				max: 1,
-				time: 2 * 60 * 1000, // 2 minutes
+				// 2 minutes
+				time: 2 * 60 * 1000,
 				/**
-				 * @param {import('discord.js').Message} message 
+				 * @param {import('discord.js').Message} message
 				 */
 				filter(message) {
 					// Check if sent by author
-					if(message.author.id !== player) return false;
+					if (message.author.id !== player) return false;
 
 					// Check if the message is completely alphabetical & if its 5 characters long
-					if(message.content.length !== 5 || !isAlphabetical(message.content.toLowerCase())) return false;
+					if (message.content.length !== 5 || !isAlphabetical(message.content.toLowerCase())) return false;
 
 					return true;
-				}
+				},
 			});
 
-		if(messagesCollected.size === 0) return false;
+		if (messagesCollected.size === 0) return false;
 
 		const message = messagesCollected.first();
 
-		if(message.guild.me.permissionsIn(message.channel).has('MANAGE_MESSAGES')) message.delete();
+		if (message.guild.me.permissionsIn(message.channel).has('MANAGE_MESSAGES')) message.delete();
 
 		// I just require their content
 		return message.content.toLowerCase();
@@ -113,7 +114,7 @@ module.exports = class Wordle {
 					? this.win
 						? 'GREEN'
 						: 'RED'
-					: 'YELLOW'
+					: 'YELLOW',
 			);
 	}
-}
+};
