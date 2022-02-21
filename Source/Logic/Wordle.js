@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const words = require('../../Assets/Words.json');
-const displayBoard = require('./Utils/DisplayBoard');
 const isAlphabetical = require('./Utils/isAlphabetical');
+const DisplayBoard = require('./Utils/displayBoard');
 
 module.exports = class Wordle {
 	constructor(interaction) {
@@ -38,6 +38,7 @@ module.exports = class Wordle {
 		this.win = false;
 
 		console.log(this.answer);
+		this.generator = new DisplayBoard(this.answer);
 	}
 
 	async start() {
@@ -45,12 +46,13 @@ module.exports = class Wordle {
 
 		await this.interaction.reply({
 			embeds: [this.getDisplayEmbed()],
-			files: [displayBoard(this.board, this.answer)],
+			files: [this.generator.returnAttachment()],
 		});
 
 		while (this.count !== 6) {
 			const guessedWord = await this.awaitMessage();
 			console.log(guessedWord);
+			this.generator.addWord(guessedWord);
 
 			if (typeof guessedWord === 'boolean') break;
 
@@ -65,7 +67,7 @@ module.exports = class Wordle {
 
 			this.interaction.editReply({
 				embeds: [this.getDisplayEmbed()],
-				files: [displayBoard(this.board, this.answer)],
+				files: [this.generator.returnAttachment()],
 			});
 		}
 	}
