@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Client, Intents } = require("discord.js");
-const Wordle = require('./Logic/Wordle');
+const Wordle = require('./Testing/Wordle');
 
 // Declaring stuff
 const client = new Client({
